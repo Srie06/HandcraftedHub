@@ -1,0 +1,295 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Cultural color palette - Terracotta, Indigo, Gold */
+    --background: 30 35% 96%; /* Warm cream background */
+    --foreground: 25 25% 20%; /* Deep brown text */
+    --card: 0 0% 100%;
+    --card-foreground: 25 25% 20%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 25 25% 20%;
+    
+    /* Primary: Terracotta */
+    --primary: 15 65% 55%; /* Rich terracotta */
+    --primary-foreground: 0 0% 100%;
+    
+    /* Secondary: Indigo */
+    --secondary: 235 50% 45%; /* Deep indigo */
+    --secondary-foreground: 0 0% 100%;
+    
+    /* Accent: Gold */
+    --accent: 45 85% 55%; /* Warm gold */
+    --accent-foreground: 25 25% 20%;
+    
+    --muted: 30 25% 92%;
+    --muted-foreground: 25 15% 45%;
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 30 20% 88%;
+    --input: 30 20% 90%;
+    --ring: 15 65% 55%;
+    
+    /* Chart colors using cultural palette */
+    --chart-1: 15 65% 55%; /* Terracotta */
+    --chart-2: 235 50% 45%; /* Indigo */
+    --chart-3: 45 85% 55%; /* Gold */
+    --chart-4: 160 45% 50%; /* Jade green */
+    --chart-5: 340 60% 55%; /* Crimson */
+    
+    --radius: 0.75rem;
+    
+    /* Cultural theme colors */
+    --terracotta: 15 65% 55%;
+    --terracotta-light: 15 55% 70%;
+    --terracotta-dark: 15 70% 40%;
+    --indigo: 235 50% 45%;
+    --indigo-light: 235 45% 60%;
+    --indigo-dark: 235 55% 30%;
+    --gold: 45 85% 55%;
+    --gold-light: 45 80% 70%;
+    --gold-dark: 45 90% 40%;
+  }
+
+  .dark {
+    --background: 25 20% 12%;
+    --foreground: 30 30% 95%;
+    --card: 25 18% 15%;
+    --card-foreground: 30 30% 95%;
+    --popover: 25 18% 15%;
+    --popover-foreground: 30 30% 95%;
+    
+    /* Primary: Terracotta (adjusted for dark mode) */
+    --primary: 15 60% 60%;
+    --primary-foreground: 0 0% 100%;
+    
+    /* Secondary: Indigo (adjusted for dark mode) */
+    --secondary: 235 45% 55%;
+    --secondary-foreground: 0 0% 100%;
+    
+    /* Accent: Gold (adjusted for dark mode) */
+    --accent: 45 80% 60%;
+    --accent-foreground: 25 25% 20%;
+    
+    --muted: 25 15% 20%;
+    --muted-foreground: 25 20% 65%;
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 25 15% 22%;
+    --input: 25 15% 22%;
+    --ring: 15 60% 60%;
+    
+    --chart-1: 15 60% 60%;
+    --chart-2: 235 45% 55%;
+    --chart-3: 45 80% 60%;
+    --chart-4: 160 40% 55%;
+    --chart-5: 340 55% 60%;
+    
+    /* Cultural theme colors (dark mode) */
+    --terracotta: 15 60% 60%;
+    --terracotta-light: 15 50% 75%;
+    --terracotta-dark: 15 65% 45%;
+    --indigo: 235 45% 55%;
+    --indigo-light: 235 40% 70%;
+    --indigo-dark: 235 50% 40%;
+    --gold: 45 80% 60%;
+    --gold-light: 45 75% 75%;
+    --gold-dark: 45 85% 45%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: 'Inter', 'Noto Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  
+  /* Typography - Cultural theme */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', 'Noto Sans', serif;
+    font-weight: 600;
+  }
+  
+  .font-display {
+    font-family: 'Playfair Display', 'Noto Sans', serif;
+  }
+  
+  .font-body {
+    font-family: 'Inter', 'Noto Sans', sans-serif;
+  }
+  
+  .font-indic {
+    font-family: 'Noto Sans', sans-serif;
+  }
+}
+
+@layer utilities {
+  /* Smooth transitions for all interactive elements */
+  .transition-smooth {
+    @apply transition-all duration-300 ease-in-out;
+  }
+  
+  /* Hover lift effect */
+  .hover-lift {
+    @apply transition-transform duration-300 ease-out;
+  }
+  
+  .hover-lift:hover {
+    @apply -translate-y-1;
+  }
+  
+  /* Soft shadow utilities */
+  .shadow-soft {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.06);
+  }
+  
+  .shadow-soft-lg {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06), 0 2px 4px rgba(0, 0, 0, 0.08);
+  }
+  
+  /* Cultural shadow - warmer tones */
+  .shadow-cultural {
+    box-shadow: 0 2px 8px rgba(194, 87, 51, 0.08), 0 1px 2px rgba(194, 87, 51, 0.12);
+  }
+  
+  .shadow-cultural-lg {
+    box-shadow: 0 4px 16px rgba(194, 87, 51, 0.12), 0 2px 4px rgba(194, 87, 51, 0.16);
+  }
+  
+  /* Gradient backgrounds - Cultural theme */
+  .bg-gradient-cultural {
+    background: linear-gradient(135deg, hsl(30, 35%, 96%) 0%, hsl(15, 45%, 92%) 50%, hsl(45, 60%, 94%) 100%);
+  }
+  
+  .bg-gradient-cultural-alt {
+    background: linear-gradient(to bottom right, hsl(15, 55%, 90%), hsl(235, 40%, 92%), hsl(45, 70%, 90%));
+  }
+  
+  .bg-gradient-terracotta {
+    background: linear-gradient(135deg, hsl(15, 65%, 55%) 0%, hsl(15, 70%, 40%) 100%);
+  }
+  
+  .bg-gradient-indigo {
+    background: linear-gradient(135deg, hsl(235, 50%, 45%) 0%, hsl(235, 55%, 30%) 100%);
+  }
+  
+  .bg-gradient-gold {
+    background: linear-gradient(135deg, hsl(45, 85%, 55%) 0%, hsl(45, 90%, 40%) 100%);
+  }
+  
+  /* Handcrafted texture overlay */
+  .texture-handcrafted {
+    position: relative;
+  }
+  
+  .texture-handcrafted::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 2px,
+        rgba(194, 87, 51, 0.02) 2px,
+        rgba(194, 87, 51, 0.02) 4px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(194, 87, 51, 0.02) 2px,
+        rgba(194, 87, 51, 0.02) 4px
+      );
+    pointer-events: none;
+  }
+  
+  /* Traditional border patterns */
+  .border-traditional {
+    border-style: solid;
+    border-image: repeating-linear-gradient(
+      90deg,
+      hsl(15, 65%, 55%),
+      hsl(15, 65%, 55%) 10px,
+      hsl(45, 85%, 55%) 10px,
+      hsl(45, 85%, 55%) 20px,
+      hsl(235, 50%, 45%) 20px,
+      hsl(235, 50%, 45%) 30px
+    ) 1;
+  }
+  
+  /* Decorative corner accent */
+  .corner-accent {
+    position: relative;
+  }
+  
+  .corner-accent::before,
+  .corner-accent::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-color: hsl(45, 85%, 55%);
+  }
+  
+  .corner-accent::before {
+    top: 0;
+    left: 0;
+    border-top: 2px solid;
+    border-left: 2px solid;
+  }
+  
+  .corner-accent::after {
+    bottom: 0;
+    right: 0;
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+  }
+  
+  /* Mandala-inspired decorative element */
+  .mandala-decoration {
+    position: relative;
+  }
+  
+  .mandala-decoration::before {
+    content: '✦';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: hsl(45, 85%, 55%);
+    font-size: 1.5rem;
+  }
+  
+  /* Paisley-inspired pattern background */
+  .bg-paisley {
+    background-image: radial-gradient(circle at 20% 50%, rgba(194, 87, 51, 0.03) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 80%, rgba(63, 81, 181, 0.03) 0%, transparent 50%),
+                      radial-gradient(circle at 40% 20%, rgba(218, 165, 32, 0.03) 0%, transparent 50%);
+  }
+  
+  /* Artisan card styling */
+  .artisan-card {
+    @apply bg-card rounded-lg shadow-cultural hover:shadow-cultural-lg transition-smooth;
+    @apply border-2 border-border hover:border-terracotta;
+  }
+  
+  /* Cultural divider */
+  .divider-cultural {
+    height: 2px;
+    background: linear-gradient(
+      to right,
+      transparent,
+      hsl(15, 65%, 55%) 20%,
+      hsl(45, 85%, 55%) 50%,
+      hsl(15, 65%, 55%) 80%,
+      transparent
+    );
+  }
+}

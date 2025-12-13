@@ -1,0 +1,81 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Users collection
+    match /users/{userId} {
+      allow read: if true;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Products collection
+    match /products/{productId} {
+      allow read: if true;
+      allow create: if request.auth != null &&
+                      request.resource.data.sellerId == request.auth.uid;
+      allow update, delete: if request.auth != null &&
+                              resource.data.sellerId == request.auth.uid;
+    }
+
+    // Orders collection
+    match /orders/{orderId} {
+      // Buyers and sellers can read their own orders
+      allow read: if request.auth != null && 
+                    (resource.data.buyerId == request.auth.uid || 
+                     resource.data.sellerId == request.auth.uid);
+      // Buyers can create orders
+      allow create: if request.auth != null && 
+                      request.resource.data.buyerId == request.auth.uid;
+      // Sellers can update order status
+      allow update: if request.auth != null && 
+                      resource.data.sellerId == request.auth.uid;
+      // No one can delete orders
+      allow delete: if false;
+    }
+
+    // Wishlists collection
+    match /wishlists/{userId} {
+      // Users can only read and write their own wishlist
+      allow read, write: if request.auth != null && 
+                           request.auth.uid == userId;
+    }
+
+    // Notifications collection
+    match /notifications/{notificationId} {
+      // Users can only read their own notifications
+      allow read: if request.auth != null && 
+                    resource.data.userId == request.auth.uid;
+      // System can create notifications
+      allow create: if request.auth != null;
+      // Users can update their own notifications (mark as read)
+      allow update: if request.auth != null && 
+                      resource.data.userId == request.auth.uid;
+      // Users can delete their own notifications
+      allow delete: if request.auth != null && 
+                      resource.data.userId == request.auth.uid;
+    }
+
+    // WhatsApp Sessions collection
+    match /whatsappSessions/{sessionId} {
+      // Allow read for authenticated users (admins and sellers)
+      allow read: if request.auth != null;
+      // Allow create for any authenticated user (webhook will use service account)
+      allow create: if true;
+      // Allow update for authenticated users or system
+      allow update: if true;
+      // No deletion allowed
+      allow delete: if false;
+    }
+
+    // Product Drafts collection
+    match /productDrafts/{draftId} {
+      // Allow read for authenticated users or anyone (for simulator)
+      allow read: if true;
+      // Allow create for anyone (for simulator and webhook)
+      allow create: if true;
+      // Allow update for anyone (for simulator and admin review)
+      allow update: if true;
+      // No deletion allowed
+      allow delete: if false;
+    }
+  }
+}
